@@ -5,6 +5,30 @@
 
 <div align="center"> <h3> 🚧 UNDER ACTIVE DEVELOPMENT 🚧 </h3> </div>
 
+## Table of Content
+<!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
+
+- [✅ Core Idea:](#-core-idea)
+- [🧠 Basic Example](#-basic-example)
+- [🔧 System Architecture](#-system-architecture)
+- [🛠️ Tools & Technologies that we can Use](#-tools-technologies-that-we-can-use)
+- [🏗️ Step-by-Step Implementation Plan](#-step-by-step-implementation-plan)
+   * [1. **Design the "Native Language" Syntax**](#1-design-the-native-language-syntax)
+   * [2. **Build a Translator**](#2-build-a-translator)
+   * [3. **Handle Variables, Loops, etc.**](#3-handle-variables-loops-etc)
+   * [4. **Execute Translated Code**](#4-execute-translated-code)
+   * [5. **UI (Optional)**](#5-ui-optional)
+- [🌍 Multilingual Support](#-multilingual-support)
+- [⚠️ Key Challenges](#-key-challenges)
+- [✅ MVP Features](#-mvp-features)
+- [🧪 Simple Proof-of-Concept Code](#-simple-proof-of-concept-code)
+- [🔐 Contribution & Branch Protection Policy](#-contribution-branch-protection-policy)
+   * [✅ **Contribution Guidelines**](#-contribution-guidelines)
+   * [🔄 Why This Policy?](#-why-this-policy)
+- [🤝 Collaborators](#-collaborators)
+
+<!-- TOC end -->
+
 
 ## ✅ Core Idea:
 
@@ -205,3 +229,4 @@ The following are the collaborators on this repository:
 - @[yashnarayan123](https://github.com/yashnarayan123/) -  Backend, DevOps Maintainers
 
 *If you’re not yet listed here but contribute regularly, please let us know and we’ll add you!*  
+
