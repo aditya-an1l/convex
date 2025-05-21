@@ -1,7 +1,8 @@
-# convex
-Write Progamming language in your own language
+convex
 
----
+<div align="center"> 🗺️ CONVEX - WRITE YOUR PROGRAM IN YOUR OWN LANGUAGE</div>
+
+
 
 
 ## ✅ Core Idea:
