@@ -1,8 +1,33 @@
+
 <div align="center"> <h1> 🗺️ CONVEX - WRITE YOUR PROGRAM IN YOUR OWN LANGUAGE</h1> </div>
 
 ![logo](./media/Logo.png) 
 
 <div align="center"> <h3> 🚧 UNDER ACTIVE DEVELOPMENT 🚧 </h3> </div>
+
+## Table of Content
+<!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
+
+- [✅ Core Idea:](#-core-idea)
+- [🧠 Basic Example](#-basic-example)
+- [🔧 System Architecture](#-system-architecture)
+- [🛠️ Tools & Technologies that we can Use](#-tools-technologies-that-we-can-use)
+- [🏗️ Step-by-Step Implementation Plan](#-step-by-step-implementation-plan)
+   * [1. **Design the "Native Language" Syntax**](#1-design-the-native-language-syntax)
+   * [2. **Build a Translator**](#2-build-a-translator)
+   * [3. **Handle Variables, Loops, etc.**](#3-handle-variables-loops-etc)
+   * [4. **Execute Translated Code**](#4-execute-translated-code)
+   * [5. **UI (Optional)**](#5-ui-optional)
+- [🌍 Multilingual Support](#-multilingual-support)
+- [⚠️ Key Challenges](#-key-challenges)
+- [✅ MVP Features](#-mvp-features)
+- [🧪 Simple Proof-of-Concept Code](#-simple-proof-of-concept-code)
+- [🔐 Contribution & Branch Protection Policy](#-contribution-branch-protection-policy)
+   * [✅ **Contribution Guidelines**](#-contribution-guidelines)
+   * [🔄 Why This Policy?](#-why-this-policy)
+- [🤝 Collaborators](#-collaborators)
+
+<!-- TOC end -->
 
 
 ## ✅ Core Idea:
@@ -160,4 +185,48 @@ x = 7
 exec(translate(user_code))
 ```
 
+
+
+## 🔐 Contribution & Branch Protection Policy
+
+> 💡 Note: For more details and step-by-step instructions for contributing, refer [CONTRIBUTING](./CONTRIBUTING.md) page.
+
+
+To maintain a high-quality and collaborative codebase, the `main` branch of this repository is **protected**. Please follow the simple workflow below when contributing:
+
+### ✅ **Contribution Guidelines**
+
+1. **Create a new branch** from `main`. Make your contributions in that branch.
+2. **Push your changes** to your branch. 
+3. **Open a Pull Request (PR)** targeting `main`.
+4. Your PR must:
+   * ✅ Receive **at least 1 code review approval**. Feel free to request the collaborators for the review.
+   * 🚫 **Not be merged by the same person who made the last commit to `main`**
+5. Once approved, **another contributor** (not the last committer) would soon merge the PR.
+
+The collaborators would try their best to review and resolve the contribution as soon as possible.
+
+Feel free to reach out to the collaborators for any queries.
+
+### 🔄 Why This Policy?
+
+* Ensures peer review for better code quality.
+* Prevents accidental or unilateral changes to the main branch.
+* Encourages shared responsibility and collaboration.
+
+> 💡 **Note:** PRs that do not follow this process will be blocked automatically by GitHub branch protection rules.
+
+
+## 🤝 Collaborators
+
+The following are the collaborators on this repository:
+
+- @[aditya-an1l](https://github.com/aditya-an1l/) - Project Maintainer
+- @[Pranav770](https://github.com/Pranav770/) - Web App, NLP Maintainer
+- @[sproutcake23](https://github.com/sproutcake23/) - Backend, NLP Maintainers
+- @[sriram936](https://github.com/sriram936/) - NLP Maintainer
+- @[StrikerSam-Ai](https://github.com/StrikerSam-Ai/) - Web App, QA/Testing Maintainer
+- @[yashnarayan123](https://github.com/yashnarayan123/) -  Backend, DevOps Maintainers
+
+*If you’re not yet listed here but contribute regularly, please let us know and we’ll add you!*  
 
