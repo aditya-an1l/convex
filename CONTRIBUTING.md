@@ -87,6 +87,8 @@ git push origin feature/<short-description>
 
 ### ✅ 6. Code Review & Approval
 
+> 💡 Note: For more details and step-by-step instructions for contributing, refer [CONTRIBUTING](./CONTRIBUTING.md) page.
+
 Your PR must:
 
 * ✅ Receive **at least 1 approval** from a repository collaborator.
@@ -122,3 +124,18 @@ Once approved:
 
 Thank you for helping make Convex better and more inclusive! 🌏✨
 
+--- 
+
+## 🤝 Collaborators
+
+A big thank you to the following contributors and maintainers for their ongoing support and reviews:
+
+- **@alice-dev** — Product Manager / Team Lead  
+- **@bhanu-lang** — Language Expert / Lexicon Developer  
+- **@charlie-backend** — Backend Developer (Translator & Executor)  
+- **@divya-frontend** — Frontend Developer (UI/UX)  
+- **@ekta-nlp** — NLP Engineer  
+- **@faraz-qa** — QA / Test Engineer  
+- **@geeta-devops** — DevOps / Deployment Engineer  
+
+*If you’re not yet listed here but contribute regularly, please let us know and we’ll add you!*  
