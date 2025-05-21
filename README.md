@@ -1,3 +1,4 @@
+
 <div align="center"> <h1> 🗺️ CONVEX - WRITE YOUR PROGRAM IN YOUR OWN LANGUAGE</h1> </div>
 
 ![logo](./media/Logo.png) 
@@ -193,11 +194,11 @@ Feel free to reach out to the collaborators for any queries.
 
 The following are the collaborators on this repository:
 
-- @aditya-an1l - Project Maintainer
-- @Pranav770 - Web App, NLP Maintainer
-- @sproutcake23 - Backend, NLP Maintainers
-- @sriram936 - NLP Maintainer
-- @StrikerSam-Ai - Web App, QA/Testing Maintainer
-- @yashnarayan123 -  Backend, DevOps Maintainers
+- @[aditya-an1l](https://github.com/aditya-an1l/) - Project Maintainer
+- @[Pranav770](https://github.com/Pranav770/) - Web App, NLP Maintainer
+- @[sproutcake23](https://github.com/sproutcake23/) - Backend, NLP Maintainers
+- @[sriram936](https://github.com/sriram936/) - NLP Maintainer
+- @[StrikerSam-Ai](https://github.com/StrikerSam-Ai/) - Web App, QA/Testing Maintainer
+- @[yashnarayan123](https://github.com/yashnarayan123/) -  Backend, DevOps Maintainers
 
 *If you’re not yet listed here but contribute regularly, please let us know and we’ll add you!*  
