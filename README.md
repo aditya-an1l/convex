@@ -178,6 +178,8 @@ To maintain a high-quality and collaborative codebase, the `main` branch of this
 
 The collaborators would try their best to review and resolve the contribution as soon as possible.
 
+Feel free to reach out to the collaborators for any queries.
+
 ### 🔄 Why This Policy?
 
 * Ensures peer review for better code quality.
@@ -186,3 +188,16 @@ The collaborators would try their best to review and resolve the contribution as
 
 > 💡 **Note:** PRs that do not follow this process will be blocked automatically by GitHub branch protection rules.
 
+
+## 🤝 Collaborators
+
+The following are the collaborators on this repository:
+
+- @aditya-an1l - Project Maintainer
+- @Pranav770 - Web App, NLP Maintainer
+- @sproutcake23 - Backend, NLP Maintainers
+- @sriram936 - NLP Maintainer
+- @StrikerSam-Ai - Web App, QA/Testing Maintainer
+- @yashnarayan123 -  Backend, DevOps Maintainers
+
+*If you’re not yet listed here but contribute regularly, please let us know and we’ll add you!*  

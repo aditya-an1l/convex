@@ -109,7 +109,7 @@ Once approved:
 
 ### 📞 Need Help?
 
-* **Ask questions** on the issue tracker or in our discussion channel.
+* **Ask questions** on the [issue](https://github.com/aditya-an1l/convex/issues) tracker or in our [Discussion](https://github.com/aditya-an1l/convex/discussions) channel.
 * **Ping any collaborator** directly for guidance or unblockers.
 
 ---
@@ -125,16 +125,3 @@ Once approved:
 Thank you for helping make Convex better and more inclusive! 🌏✨
 
 --- 
-
-## 🤝 Collaborators
-
-The following individuals are collaborators on this repository:
-
-- @aditya-an1l - Project Maintainer
-- @Pranav770 - Web App, NLP Maintainer
-- @sproutcake23 - Backend, NLP Maintainers
-- @sriram936 - NLP Maintainer
-- @StrikerSam-Ai - Web App, QA/Testing Maintainer
-- @yashnarayan123 -  Backend, DevOps Maintainers
-
-*If you’re not yet listed here but contribute regularly, please let us know and we’ll add you!*  
