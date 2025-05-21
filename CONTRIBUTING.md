@@ -101,7 +101,7 @@ Your PR must:
 Once approved:
 
 1. A **different collaborator** (not the last committer on `main`) will merge your PR.
-2. After merge, they will pull the updated `main` into their local clone and push, ensuring branch protection remains intact.
+2. To ensure synchronicity, other contributor must  pull the updated `main` into their local clone and push, ensuring branch protection remains intact.
 
 ---
 
