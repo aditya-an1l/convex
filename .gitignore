@@ -1,0 +1,121 @@
+# ========================
+# Root / Global
+# ========================
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# dotenv environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Coverage reports
+coverage/
+*.lcov
+
+# ========================
+# Node / Frontend
+# ========================
+# Dependencies
+**/node_modules/
+
+# Build outputs
+**/dist/
+**/build/
+**/.next/
+**/.nuxt/
+**/out/
+
+# TypeScript
+*.tsbuildinfo
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# ========================
+# Python / Backend
+# ========================
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+env/
+.env/                 # if you use a folder named .env for venv
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Pytest
+.pytest_cache/
+htmlcov/
+
+# Pydantic caches (if any)
+.pydantic_cache/
+
+# IDEs and editors
+**/.idea/
+**/*.iml
+**/.mypy_cache/
+**/.pytest_cache/
+
+# ========================
+# Docker
+# ========================
+# Ignore Docker configs if you have local overrides
+docker-compose.override.yml
+
+# ========================
+# Miscellaneous
+# ========================
+# Temporary files
+*.tmp
+*.temp
+
+# Backup files
+*~
+*.bak
+*.swp
+
+# Generated documentation
+docs/_build/
+
+# Language packs (if you generate any compiled cache)
+**/*.cache.json
