@@ -1,5 +1,6 @@
 <div align="center"> <h1> 🗺️ CONVEX - WRITE YOUR PROGRAM IN YOUR OWN LANGUAGE</h1> </div>
 
+<![logo](./media/Logo.png) 
 
 <div align="center"> <h3> 🚧 UNDER ACTIVE DEVELOPMENT 🚧 </h3> </div>
 
