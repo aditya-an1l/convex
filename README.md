@@ -1,15 +1,13 @@
-convex
-
-<div align="center"> 🗺️ CONVEX - WRITE YOUR PROGRAM IN YOUR OWN LANGUAGE</div>
+<div align="center"> <h1> 🗺️ CONVEX - WRITE YOUR PROGRAM IN YOUR OWN LANGUAGE</h1> </div>
 
 
+<div align="center"> <h3> 🚧 UNDER ACTIVE DEVELOPMENT </h3> </div>
 
 
 ## ✅ Core Idea:
 
 Let users write **code in their native language**, and then **translate it into real code** (like Python, Java, etc.) that can be executed.
 
----
 
 ## 🧠 Basic Example
 
@@ -31,7 +29,6 @@ else:
     print("छोटा है")
 ```
 
----
 
 ## 🔧 System Architecture
 
@@ -48,7 +45,6 @@ else:
     Runs the translated code and returns the output.
     
 
----
 
 ## 🛠️ Tools & Technologies that we can Use
 
@@ -60,7 +56,6 @@ else:
 | Frontend (optional) | Web-based editor with native script support |
 | Backend             | Python or Java-based translator engine      |
 
----
 
 ## 🏗️ Step-by-Step Implementation Plan
 
@@ -111,8 +106,6 @@ Make a web app or desktop app with:
 - Show execution result/output
     
 
----
-
 ## 🌍 Multilingual Support
 
 To support multiple Indian languages:
@@ -122,7 +115,6 @@ To support multiple Indian languages:
 - Choose language at the start or auto-detect
     
 
----
 
 ## ⚠️ Key Challenges
 
@@ -131,7 +123,6 @@ To support multiple Indian languages:
 - Handling different scripts (Devanagari, Tamil, etc.)
 - Security in execution (`exec()` is dangerous without sandboxing)
 
----
 
 ## ✅ MVP Features
 
@@ -142,7 +133,6 @@ To support multiple Indian languages:
 |⚙️ Executor|Runs the translated code|
 |🖥️ Web Interface|Optional for ease of access|
 
----
 
 ## 🧪 Simple Proof-of-Concept Code
 
@@ -169,4 +159,4 @@ x = 7
 exec(translate(user_code))
 ```
 
----
+
