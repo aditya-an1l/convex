@@ -87,8 +87,6 @@ git push origin feature/<short-description>
 
 ### ✅ 6. Code Review & Approval
 
-> 💡 Note: For more details and step-by-step instructions for contributing, refer [CONTRIBUTING](./CONTRIBUTING.md) page.
-
 Your PR must:
 
 * ✅ Receive **at least 1 approval** from a repository collaborator.

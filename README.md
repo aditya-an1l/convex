@@ -165,6 +165,9 @@ exec(translate(user_code))
 
 ## 🔐 Contribution & Branch Protection Policy
 
+> 💡 Note: For more details and step-by-step instructions for contributing, refer [CONTRIBUTING](./CONTRIBUTING.md) page.
+
+
 To maintain a high-quality and collaborative codebase, the `main` branch of this repository is **protected**. Please follow the simple workflow below when contributing:
 
 ### ✅ **Contribution Guidelines**
