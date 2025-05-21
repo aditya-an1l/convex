@@ -161,3 +161,26 @@ exec(translate(user_code))
 ```
 
 
+
+## 🔐 Contribution & Branch Protection Policy
+
+To maintain a high-quality and collaborative codebase, the `main` branch of this repository is **protected**. Please follow the workflow below when contributing:
+
+### ✅ **Contribution Guidelines**
+
+1. **Create a new branch** from `main`.
+2. **Push your changes** to your feature branch.
+3. **Open a Pull Request (PR)** targeting `main`.
+4. Your PR must:
+   * ✅ Receive **at least 1 code review approval**
+   * 🚫 **Not be merged by the same person who made the last commit to `main`**
+5. Once approved, **another contributor** (not the last committer) must merge the PR.
+
+### 🔄 Why This Policy?
+
+* Ensures peer review for better code quality.
+* Prevents accidental or unilateral changes to the main branch.
+* Encourages shared responsibility and collaboration.
+
+> 💡 **Note:** PRs that do not follow this process will be blocked automatically by GitHub branch protection rules.
+
