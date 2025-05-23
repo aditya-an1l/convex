@@ -2,7 +2,7 @@
 
 Thank you for your interest in contributing to **Convex**! We follow a clear, collaborative workflow to ensure code quality and shared ownership. Please read through these steps before submitting your first contribution.
 
-***Do not hesitate to ask the maintainers [maintainers](https://github.com/aditya-an1l/convex/tree/main?tab=readme-ov-file#-collaborators) for help***
+***Do not hesitate to ask the [maintainers](https://github.com/aditya-an1l/convex/tree/main?tab=readme-ov-file#-collaborators) for help***
 
 ---
 
