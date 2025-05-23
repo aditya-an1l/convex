@@ -3,13 +3,10 @@
 # -----------------------------------------------
 # Description   : Translates code written in Hindi to 
 #                 Python syntax.
-# Author(s)     : aditya-an1l
+# Author(s)     : aditya-an1l,sproutcake23
 # Created       : 2025-05-22
-# Last Modified : 2025-05-22 13:39 (aditya-an1l)
-# Comment       : Not really robust, but it works. It better
-#                 if we execute the code as:
-#                 $ python parser.py >> output.txt
-#                 And then view the output directly in `output.txt`
+# Last Modified : 2025-05-22 18:10 (sproutcake23)
+# Comment       : improve robustness of the model
 # ===============================================
 
 import json
@@ -26,7 +23,7 @@ class MultilingualToPythonParser:
 
         # pre-compile patterns, might be a plus for performance
         self.patterns = {
-            re.compile(rf"\b{re.escape(k)}\b"): v
+            re.compile(rf"(?<!\w){re.escape(k)}(?!\w)"): v
             for k, v in self.keyword_map.items()
         }
 
