@@ -63,6 +63,20 @@ class MultilingualToPythonParser:
         lines = code.strip().split("\n")
         return "\n".join(self.translate_line(line) for line in lines)
 
+
+if __name__ == "__main__":
+    # initialise a parser with a Hindi language pack
+    parser = MultilingualToPythonParser("./language_packs/hindi.json")
+
+    # sample hindi code that is fed as an input code
+    hindi_code = """
+अगर x > 0:
+    छापो("घनात्मक संख्या")
+"""
+
+    # translate and print the resulting python code
+    translated_code = parser.translate_code(hindi_code)
+    print("Translated Python Code:\n")
 def main():
     """
     Main function that parses the args and runs the compiler
