@@ -1,12 +1,22 @@
 # ===============================================
-# Hindi to Python Parser
+# Multilingual to Python Parser
 # -----------------------------------------------
-# Description   : Translates code written in Hindi to 
-#                 Python syntax.
-# Author(s)     : aditya-an1l,sproutcake23
+# Description   : Translates code written in Hindi (or other supported 
+#                 languages) to Python syntax using a JSON keyword map.
+# Author(s)     : aditya-an1l, sproutcake23
 # Created       : 2025-05-22
-# Last Modified : 2025-05-22 18:10 (sproutcake23)
-# Comment       : improve robustness of the model
+# Last Modified : 2025-05-22 19:34 (aditya-an1l)
+# Comment       : Supports CLI arguments for input file and language pack.
+#                 Use the script as :
+#                 $ python parser.py --lang <language> --input <input>
+#                 or
+#                 $ python parser.py --l <language> --i <input>
+#
+#                 Eg:
+#                 $ python parser.py --lang hindi --input demo/input_hindi.py
+#
+#                 To know more about usage, execute:
+#                 $ python parser.py -h
 # ===============================================
 
 import json
@@ -54,9 +64,6 @@ class MultilingualToPythonParser:
         return "\n".join(self.translate_line(line) for line in lines)
 
 def main():
-    """
-    Main function that parses the args and runs the compiler
-    """
     parser = argparse.ArgumentParser(description="Translate multilingual code to Python.")
     parser.add_argument('-l', '--lang', type=str, required=True, help='Language to translate from (e.g., hindi)')
     parser.add_argument('-i', '--input', type=str, required=True, help='Path to the input code file')
