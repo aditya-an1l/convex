@@ -5,12 +5,12 @@
 #                 languages) to Python syntax using a JSON keyword map.
 # Author(s)     : aditya-an1l, sproutcake23
 # Created       : 2025-05-22
-# Last Modified : 2025-05-22 19:34 (aditya-an1l)
+# Last Modified : 2025-05-23 19:34 (aditya-an1l)
 # Comment       : Supports CLI arguments for input file and language pack.
 #                 Use the script as :
-#                 $ python parser.py --lang <language> --input <input>
+#                 $ python parser.py --lang <language> --input <input file>
 #                 or
-#                 $ python parser.py --l <language> --i <input>
+#                 $ python parser.py --l <language> --i <input file>
 #
 #                 Eg:
 #                 $ python parser.py --lang hindi --input demo/input_hindi.py
@@ -64,6 +64,9 @@ class MultilingualToPythonParser:
         return "\n".join(self.translate_line(line) for line in lines)
 
 def main():
+    """
+    Main function that parses the args and runs the compiler
+    """
     parser = argparse.ArgumentParser(description="Translate multilingual code to Python.")
     parser.add_argument('-l', '--lang', type=str, required=True, help='Language to translate from (e.g., hindi)')
     parser.add_argument('-i', '--input', type=str, required=True, help='Path to the input code file')
