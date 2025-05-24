@@ -1,16 +1,29 @@
 # ===============================================
-# Hindi to Python Parser
+# Multilingual to Python Parser
 # -----------------------------------------------
-# Description   : Translates code written in Hindi to 
-#                 Python syntax.
-# Author(s)     : aditya-an1l,sproutcake23
+# Description   : Translates code written in Hindi (or other supported 
+#                 languages) to Python syntax using a JSON keyword map.
+# Author(s)     : aditya-an1l, sproutcake23
 # Created       : 2025-05-22
-# Last Modified : 2025-05-22 18:10 (sproutcake23)
-# Comment       : improve robustness of the model
+# Last Modified : 2025-05-23 19:34 (aditya-an1l)
+# Comment       : Supports CLI arguments for input file and language pack.
+#                 Use the script as :
+#                 $ python parser.py --lang <language> --input <input file>
+#                 or
+#                 $ python parser.py --l <language> --i <input file>
+#
+#                 Eg:
+#                 $ python parser.py --lang hindi --input demo/input_hindi.py
+#
+#                 To know more about usage, execute:
+#                 $ python parser.py -h
 # ===============================================
 
 import json
 import re
+import argparse
+import os
+import sys
 
 class MultilingualToPythonParser:
     def __init__(self, language_pack_path: str):
@@ -18,10 +31,15 @@ class MultilingualToPythonParser:
         Load the language pack JSON file into a keyword map.
         Compiles word-based regex patterns for accurate replacement.
         """
+        if not os.path.isfile(language_pack_path):
+            raise FileNotFoundError(f"Language pack not found: {language_pack_path}")
+        
         with open(language_pack_path, 'r', encoding='utf-8') as f:
-            self.keyword_map = json.load(f)
+            try:
+                self.keyword_map = json.load(f)
+            except json.JSONDecodeError:
+                raise ValueError(f"Invalid JSON in language pack: {language_pack_path}")
 
-        # pre-compile patterns, might be a plus for performance
         self.patterns = {
             re.compile(rf"(?<!\w){re.escape(k)}(?!\w)"): v
             for k, v in self.keyword_map.items()
@@ -45,18 +63,37 @@ class MultilingualToPythonParser:
         lines = code.strip().split("\n")
         return "\n".join(self.translate_line(line) for line in lines)
 
+def main():
+    """
+    Main function that parses the args and runs the compiler
+    """
+    parser = argparse.ArgumentParser(description="Translate multilingual code to Python.")
+    parser.add_argument('-l', '--lang', type=str, required=True, help='Language to translate from (e.g., hindi)')
+    parser.add_argument('-i', '--input', type=str, required=True, help='Path to the input code file')
+
+    args = parser.parse_args()
+    lang = args.lang.lower()
+    input_path = args.input
+
+    if not os.path.isfile(input_path):
+        print(f"❌ Error: Input file not found: {input_path}")
+        sys.exit(1)
+
+    lang_pack_path = f"./language_packs/{lang}.json"
+
+    try:
+        translator = MultilingualToPythonParser(lang_pack_path)
+    except (FileNotFoundError, ValueError) as e:
+        print(f"❌ Error: {e}")
+        sys.exit(1)
+
+    with open(input_path, 'r', encoding='utf-8') as file:
+        source_code = file.read()
+
+    translated_code = translator.translate_code(source_code)
+
+    print("✅ Translated Python Code:\n")
+    print(translated_code)
 
 if __name__ == "__main__":
-    # initialise a parser with a Hindi language pack
-    parser = MultilingualToPythonParser("./language_packs/hindi.json")
-
-    # sample hindi code that is fed as an input code
-    hindi_code = """
-अगर x > 0:
-    छापो("सकारात्मक संख्या")
-"""
-
-    # translate and print the resulting python code
-    translated_code = parser.translate_code(hindi_code)
-    print("Translated Python Code:\n")
-    print(translated_code)
+    main()
