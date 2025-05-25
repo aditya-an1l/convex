@@ -54,7 +54,7 @@ Thank you for your interest in contributing to **Convex**! We follow a clear, co
 
 * Make your code changes
 * Keep commits **small** and **focused**.
-* Write **clear commit messages**. Following are some examples:
+* Write **clear commit messages**. Refer to [COMMIT_MESSAGE_GUIDELINES](https://github.com/aditya-an1l/convex/blob/main/COMMIT_MESSAGE_GUIDELINES.md) to know about writing clear and consistent commit messages. Following are some examples:
 
   ```
   feat: add loop support to Hindi translator
