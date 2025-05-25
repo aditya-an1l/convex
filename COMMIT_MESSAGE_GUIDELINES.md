@@ -1,31 +1,47 @@
 # ✅ Commit Message Guidelines
 
-Writing clear and consistent commit messages makes collaboration easier, improves code review, and enhances project maintainability. Here’s how to write effective commit messages.
+Clear and consistent commit messages make your project easier to understand, maintain, and scale. This guide helps contributors write high-quality, standardized commit messages.
 
----
 
 ## ✍️ General Guidelines
 
-* **Use imperative mood** in the summary
-  *Example: "Add feature" (✔️) instead of "Added feature" (✖️)*
+-   **Use imperative mood**  
+    _Example: "Add feature" (✔️) instead of "Added feature" (✖️)_
+-   **Make atomic commits**  
+    Each commit should contain one logical change. Avoid combining unrelated changes in a single commit.
+-   **Write a concise summary** (≤ 50 characters preferred)  
+    It should clearly describe **what** the change does.
+-   **Wrap commit title in the body at 72 characters**  
+    This makes logs easier to read across tools.
+-   **Use the commit description to explain _why_ and _how_**, not just _what_.  
+    Include reasoning, edge cases handled, limitations, or relevant context.
+    
 
-* **Start with a short summary** (max 50 characters if possible).
-  This summary should clearly state **what** the change does.
+## 📄 Commit Message Template
 
-* **Add an optional body** to explain the **why**, **how**, or **impact** of the change.
-  Keep lines within 72 characters.
+```txt
+<type>: <short summary>
 
-* **Group commits by intent** using standard commit types (see below).
+[Optional longer description providing context and reasoning]
 
----
+[Optional footer: e.g., Closes #123, Related to #456]
 
-## 🧠 Why This Matters
+```
 
-* Makes the commit history easy to read
-* Helps reviewers understand your changes quickly
-* Enables better release notes and changelogs
+### 🔍 Example
 
----
+```txt
+feat: Add Hindi-to-Python translation support
+
+This adds a parser that maps Hindi keywords to Python syntax 
+using a JSON language pack. Includes basic error handling 
+for unknown keywords and missing files.
+
+Closes #12
+
+```
+
+
 
 ## 🏷️ Commit Types
 
@@ -54,9 +70,8 @@ Use the following tags at the start of your commit message:
 | `remove`   | Delete files/directories                             |
 | `update`   | General updates that don't fall into other types     |
 
----
 
-## 🧪 Examples
+### Example  of Different Commit Type
 
 ```txt
 feat: Add user authentication module
@@ -68,8 +83,25 @@ test: Add tests for Hindi keyword mapping
 chore: Bump version in pyproject.toml
 ```
 
----
+## 🧪 Tips for Better Commits
 
-## 🧩 Custom Tags
+✅ Do:
 
-If your team introduces new commit types, document and **add them to this list**. Submit a PR to update this file so others can follow the standard.
+-   Make each commit purposeful and atomic
+    
+-   Write clear summaries and helpful bodies
+    
+-   Reference relevant issues (`Closes #<put-issue-number-here>`)
+    
+
+🚫 Don’t:
+
+-   Write vague messages like “fix stuff” or “changes”
+    
+-   Mix unrelated changes in a single commit
+    
+-   Use past tense in the summary
+    
+## 🧩 Custom Types
+
+If your team adds new commit types, document them here and submit a PR to update this guide.
