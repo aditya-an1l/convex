@@ -49,6 +49,7 @@ Use the following tags at the start of your commit message:
 
 | Type       | Description                                          |
 | ---------- | ---------------------------------------------------- |
+| `core`     | Introduce a core functionality                                    |
 | `feat`     | Add a new feature                                    |
 | `fix`      | Fix a bug                                            |
 | `docs`     | Update documentation                                 |
