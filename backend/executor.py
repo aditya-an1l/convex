@@ -1,13 +1,31 @@
 # ===============================================
-# Code Executor - Separate Module
+# Python Code Executor
 # -----------------------------------------------
-# Description   : Takes translated Python code from parser.py and executes it
+# Description   : Safely executes Python code from files or strings,
+#                 capturing stdout/stderr with timeout protection.
+#                 Supports integration with parser.py for multilingual
+#                 code translation and execution.
 # Author(s)     : yashnarayan123
-# Created       : 2025-05-27
-# Comment       : This program works with the output from parser.py
-#                 Usage: python executor.py --input <translated_code_file>
-#                 Or: python executor.py --code <direct_code_string>
+# Created       : 2025-05-28
+# Last Modified : 2025-05-28 8:50 (yashnarayan123)
+# Comment       : Executes Python code using subprocess for safety.
+#                 Supports three execution modes:
+#                 1. From file: -f <file.py>
+#                 2. From string: -c "<code>"
+#                 3. Parser integration: --from-parser <lang> <input_file>
+#                 
+#                 All execution results are saved to ./execution_output/
+#                 with detailed logs including timing and error info.
+#
+#                 Usage examples:
+#                 $ python executor.py -f script.py
+#                 $ python executor.py -c "print('Hello World')"
+#                 $ python executor.py --from-parser hindi demo/input_hindi.py
+#                 $ python executor.py -f script.py --quiet
 # ===============================================
+
+
+
 
 import argparse
 import os
