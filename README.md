@@ -5,6 +5,29 @@
 
 <div align="center"> <h3> 🚧 UNDER ACTIVE DEVELOPMENT 🚧 </h3> </div>
 
+<div align="center">
+  <p>
+    <a href="https://github.com/aditya-an1l/convex/releases/latest">
+      <img alt="Latest release" src="https://img.shields.io/github/v/release/aditya-an1l/convex?style=for-the-badge&logo=github&color=fff5b3&logoColor=FFFFFF&labelColor=000000&include_prerelease&sort=semver" />
+    </a>
+    <a href="https://github.com/aditya-an1l/convex/pulse">
+      <img alt="Last commit" src="https://img.shields.io/github/last-commit/aditya-an1l/convex?style=for-the-badge&logo=git&color=203a5e&logoColor=FFFFFF&labelColor=000000"/>
+    </a>
+    <a href="https://github.com/aditya-an1l/convex/blob/main/LICENSE">
+      <img alt="License" src="https://img.shields.io/github/license/aditya-an1l/convex?style=for-the-badge&logo=apache&color=fff5b3&logoColor=FFFFFF&labelColor=000000" />
+    </a>
+    <a href="https://github.com/aditya-an1l/convex/stargazers">
+      <img alt="Stars" src="https://img.shields.io/github/stars/aditya-an1l/convex?style=for-the-badge&logo=starship&color=203a5e&logoColor=FFFFFF&labelColor=000000" />
+    </a>
+    <a href="https://github.com/aditya-an1l/convex/issues">
+      <img alt="Issues" src="https://img.shields.io/github/issues/aditya-an1l/convex?style=for-the-badge&logo=gitbook&color=fff5b3&logoColor=FFFFFF&labelColor=000000" />
+    </a>
+    <a href="https://github.com/aditya-an1l/convex">
+      <img alt="Repo Size" src="https://img.shields.io/github/repo-size/aditya-an1l/convex?color=203a5e&label=SIZE&logo=files&style=for-the-badge&logoColor=FFFFFF&labelColor=000000" />
+    </a>
+  </p>
+</div>
+
 ## Table of Content
 <!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
 
