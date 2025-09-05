@@ -5,7 +5,7 @@
 #                 languages) to Python syntax using a JSON keyword map.
 # Author(s)     : aditya-an1l, sproutcake23
 # Created       : 2025-05-22
-# Last Modified : 2025-05-23 19:34 (aditya-an1l)
+# Last Modified : 2025-09-05 16:00 (sriramm932)
 # Comment       : Supports CLI arguments for input file and language pack.
 #                 Use the script as :
 #                 $ python parser.py --lang <language> --input <input file>
