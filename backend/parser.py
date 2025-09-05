@@ -20,10 +20,13 @@
 # ===============================================
 
 import json
-import re
+import regex
 import argparse
 import os
 import sys
+
+from indic_transliteration import sanscript
+from indic_transliteration.sanscript import transliterate
 
 class MultilingualToPythonParser:
     def __init__(self, language_pack_path: str):
@@ -40,19 +43,25 @@ class MultilingualToPythonParser:
             except json.JSONDecodeError:
                 raise ValueError(f"Invalid JSON in language pack: {language_pack_path}")
 
-        self.patterns = {
-            re.compile(rf"(?<!\w){re.escape(k)}(?!\w)"): v
-            for k, v in self.keyword_map.items()
-        }
+        # self.patterns = {
+        #     re.compile(rf"(?<!\w){re.escape(k)}(?!\w)"): v
+        #     for k, v in self.keyword_map.items()
+        # }
 
     def translate_line(self, line: str) -> str:
         """
         Translates a single line by replacing language-specific keywords 
         with their corresponding Python equivalents.
         """
+        words = regex.findall(r"[^\s\p{P}\p{S}]+", line)
+        transliterated_word_pairs = {word : transliterate(word, sanscript.DEVANAGARI, sanscript.ITRANS) for word in words}
+
         translated = line
-        for pattern, replacement in self.patterns.items():
-            translated = pattern.sub(replacement, translated)
+        for word, replacement in transliterated_word_pairs.items():
+            print(word)
+            translated = translated.replace(word, replacement.lower())
+            print("translated : "+translated)
+
         return translated
 
     def translate_code(self, code: str) -> str:
