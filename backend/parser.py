@@ -89,6 +89,8 @@ class MultilingualToPythonParser:
         translated = line
         for word, replacement in transliterated_word_pairs.items():
             # print(word)
+            # handles symbols in a word while translating
+            replacement = regex.sub(r'[\p{S}\p{P}\p{M}]', '', replacement)
             translated = translated.replace(word, replacement.lower())
             # print("translated : "+translated)
 
