@@ -5,9 +5,9 @@
 #                 capturing stdout/stderr with timeout protection.
 #                 Supports integration with parser.py for multilingual
 #                 code translation and execution.
-# Author(s)     : yashnarayan123
+# Author(s)     : yashnarayan123, sriramm932
 # Created       : 2025-05-28
-# Last Modified : 2025-05-28 8:50 (yashnarayan123)
+# Last Modified : 2025-09-06 20:40 (sriramm932)
 # Comment       : Executes Python code using subprocess for safety.
 #                 Supports three execution modes:
 #                 1. From file: -f <file.py>
@@ -24,6 +24,10 @@
 #                 $ python executor.py -f script.py --quiet
 # ===============================================
 
+'''
+1) Handle args input given to execute_from_string(), just made changes in execute_code()
+2) handle file input take from folder, just possible to directly take .file
+'''
 
 
 
