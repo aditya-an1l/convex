@@ -48,10 +48,30 @@ class PythonCodeExecutor:
         """
         if not os.path.isfile(code_file_path):
             raise FileNotFoundError(f"Code file not found: {code_file_path}")
+
         # Read the Python code from the file
         with open(code_file_path, 'r', encoding='utf-8') as f:
             python_code = f.read()
-        return self.execute_code(python_code, os.path.basename(code_file_path))
+
+        if not code_file_path.endswith('.py'):
+            print('Since its not py(❌) file executed directly')
+            # Create temporary file with the code
+            with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False, encoding='utf-8') as temp_file:
+                temp_file.write(python_code)
+                temp_file_path = temp_file.name
+
+            # Execute from temp file
+            result = self.execute_code(python_code, os.path.basename(code_file_path), temp_file_path)
+
+            # Clean up temp file
+            os.unlink(temp_file_path)
+
+        else:
+            print('Since its py(✅) file executed directly')
+            # Execute directly from original .py file
+            result = self.execute_code(python_code, os.path.basename(code_file_path), code_file_path)
+
+        return result
     
     def execute_from_string(self, python_code: str, source_name: str = "direct_input") -> dict:
         """
@@ -59,7 +79,7 @@ class PythonCodeExecutor:
         """
         return self.execute_code(python_code, source_name)
     
-    def execute_code(self, python_code: str, source_name: str) -> dict:
+    def execute_code(self, python_code: str, source_name: str, temp_file_path: str) -> dict:
         """
         Execute Python code and return results.
         """
@@ -73,10 +93,10 @@ class PythonCodeExecutor:
         }
         
         try:
-            # Create temporary file with the code
-            with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False, encoding='utf-8') as temp_file:
-                temp_file.write(python_code)
-                temp_file_path = temp_file.name
+            # # Create temporary file with the code
+            # with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False, encoding='utf-8') as temp_file:
+            #     temp_file.write(python_code)
+            #     temp_file_path = temp_file.name
             
             # Record start time
             start_time = datetime.now()
@@ -95,7 +115,7 @@ class PythonCodeExecutor:
             execution_time = (end_time - start_time).total_seconds()
             
             # Clean up temporary file
-            os.unlink(temp_file_path)
+            # os.unlink(temp_file_path)
             
             # Store results
             result['success'] = process.returncode == 0
