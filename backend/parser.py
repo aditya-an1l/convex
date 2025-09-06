@@ -3,7 +3,7 @@
 # -----------------------------------------------
 # Description   : Translates code written in Hindi (or other supported 
 #                 languages) to Python syntax using a JSON keyword map.
-# Author(s)     : aditya-an1l, sproutcake23
+# Author(s)     : sriramm932, aditya-an1l, sproutcake23
 # Created       : 2025-05-22
 # Last Modified : 2025-09-05 16:00 (sriramm932)
 # Comment       : Supports CLI arguments for input file and language pack.
@@ -19,6 +19,23 @@
 #                 $ python parser.py -h
 # ===============================================
 
+
+ #pattern = ^[\t ]*(\w*)[ ]*(?:(?:(\w*)[ ]*\((.*)\))|(.*)):$
+''' 
+ CASE 1:
+ def calculate_discount(price, discount_percent, hello):
+ The above pattern seperates and identifies
+ def
+ calculate_discount
+ price, discount_percent, hello
+ 
+ CASE 2:
+ if discount_percent < 0 or discount_percent > 100:
+ The above pattern seperates and identifies
+ if
+ discount_percent < 0 or discount_percent > 100
+'''
+ 
 import json
 import regex
 import argparse
@@ -42,7 +59,8 @@ class MultilingualToPythonParser:
                 self.keyword_map = json.load(f)
             except json.JSONDecodeError:
                 raise ValueError(f"Invalid JSON in language pack: {language_pack_path}")
-
+            
+        self.pattern = r'[\t ]*([\p{Script=Devanagari}\u094D]+)[ ]*(?:(?:[\p{Script=Devanagari}\u094D]+[ ]*\(.*\))|.*):'
         # self.patterns = {
         #     re.compile(rf"(?<!\w){re.escape(k)}(?!\w)"): v
         #     for k, v in self.keyword_map.items()
@@ -53,14 +71,26 @@ class MultilingualToPythonParser:
         Translates a single line by replacing language-specific keywords 
         with their corresponding Python equivalents.
         """
-        words = regex.findall(r"[^\s\p{P}\p{S}]+", line)
+        match = regex.search(self.pattern, line)
+        print(match)
+        if match:
+            original_word = match.group(1)
+            if original_word in self.keyword_map:
+                # Replace only the first occurrence of the word
+                replacement = self.keyword_map[original_word]
+                # Use \b word boundary to avoid partial matches
+                line = regex.sub(rf'\b{original_word}\b', replacement, line, count=1)
+
+
+        words = regex.findall(r"[\p{Script=Devanagari}\u094D]+", line)
+        #words = regex.findall(r"[^\s\p{P}\p{S}]+", line)
         transliterated_word_pairs = {word : transliterate(word, sanscript.DEVANAGARI, sanscript.ITRANS) for word in words}
 
         translated = line
         for word, replacement in transliterated_word_pairs.items():
-            print(word)
+            # print(word)
             translated = translated.replace(word, replacement.lower())
-            print("translated : "+translated)
+            # print("translated : "+translated)
 
         return translated
 
@@ -69,6 +99,18 @@ class MultilingualToPythonParser:
         Translates an entire code block line-by-line from the source 
         language to Python syntax.
         """
+
+        # found_names = set()
+        # matches = regex.finditer(pattern, code, regex.MULTILINE) 
+        # for match in matches:
+        #     name = match.group(1)
+        #     if name:  # Only add non-empty names
+        #         found_names.add(name)
+        # found_values = {}
+        # for name in found_names:
+        #     if name in self.keyword_map:
+        #         found_values[name] = self.keyword_map[name]
+        
         lines = code.strip().split("\n")
         return "\n".join(self.translate_line(line) for line in lines)
 
