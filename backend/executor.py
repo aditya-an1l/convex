@@ -5,23 +5,16 @@
 #                 capturing stdout/stderr with timeout protection.
 #                 Supports integration with parser.py for multilingual
 #                 code translation and execution.
-# Author(s)     : yashnarayan123
+# Author(s)     : yashnarayan123, sproutcake23
 # Created       : 2025-05-28
-# Last Modified : 2025-05-28 8:50 (yashnarayan123)
-# Comment       : Executes Python code using subprocess for safety.
-#                 Supports three execution modes:
-#                 1. From file: -f <file.py>
-#                 2. From string: -c "<code>"
-#                 3. Parser integration: --from-parser <lang> <input_file>
-#                 
-#                 All execution results are saved to ./execution_output/
-#                 with detailed logs including timing and error info.
-#
-#                 Usage examples:
-#                 $ python executor.py -f script.py
-#                 $ python executor.py -c "print('Hello World')"
-#                 $ python executor.py --from-parser hindi demo/input_hindi.py
-#                 $ python executor.py -f script.py --quiet
+# Last Modified : 2025-09-24 17:30 (sproutcake23)
+# Comment       : Executes Python code within a secure, isolated Docker container.
+#                 This sandboxing approach prevents network access, file system
+#                 modifications, and handles infinite loops via a timeout.
+# Usage:
+#     $ python executor.py -f script.py
+#     $ python executor.py -c "print('Hello World')"
+#     $ python executor.py --from-parser hindi demo/input_hindi.py
 # ===============================================
 
 
@@ -83,7 +76,16 @@ class PythonCodeExecutor:
             
             # Execute using subprocess for safety
             process = subprocess.run(
-                [sys.executable, temp_file_path],
+            [
+                "docker", "run", "--rm",
+                "--network", "none",
+                "--storage-opt", "size=100m",
+                "--memory", "256m",
+                "--memory-swap", "256m",
+                "-v", f"{temp_file_path}:/sandbox/code.py:ro",
+                "convex-sandbox:latest",
+                "/sandbox/code.py"
+            ],
                 capture_output=True,
                 text=True,
                 timeout=30,  # 30 second timeout
