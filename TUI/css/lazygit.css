@@ -1,0 +1,9 @@
+#left-panel {
+    width: 40%;
+    border: solid green;
+}
+
+#right-panel {
+    width: 60%;
+    border: solid blue;
+}
