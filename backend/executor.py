@@ -7,7 +7,7 @@
 #                 code translation and execution.
 # Author(s)     : yashnarayan123, sproutcake23
 # Created       : 2025-05-28
-# Last Modified : 2025-09-24 17:30 (sproutcake23)
+# Last Modified : 2025-10-1 13:00 (sproutcake23)
 # Comment       : Executes Python code within a secure, isolated Docker container.
 #                 This sandboxing approach prevents network access, file system
 #                 modifications, and handles infinite loops via a timeout.
@@ -79,9 +79,9 @@ class PythonCodeExecutor:
             [
                 "docker", "run", "--rm",
                 "--network", "none",
-                "--storage-opt", "size=100m",
                 "--memory", "256m",
                 "--memory-swap", "256m",
+                "--mount", "type=tmpfs,destination=/sandbox,tmpfs-size=100m",
                 "-v", f"{temp_file_path}:/sandbox/code.py:ro",
                 "convex-sandbox:latest",
                 "/sandbox/code.py"
