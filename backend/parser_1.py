@@ -1,0 +1,190 @@
+# ===============================================
+# Multilingual to Python Parser
+# -----------------------------------------------
+# Description   : Translates code written in Hindi (or other supported 
+#                 languages) to Python syntax using a JSON keyword map.
+# Author(s)     : sriramm932, aditya-an1l, sproutcake23
+# Created       : 2025-05-22
+# Last Modified : 2025-09-05 16:00 (sriramm932)
+# Comment       : Supports CLI arguments for input file and language pack.
+#                 Use the script as :
+#                 $ python parser.py --lang <language> --input <input file>
+#                 or
+#                 $ python parser.py --l <language> --i <input file>
+#
+#                 Eg:
+#                 $ python parser.py --lang hindi --input demo/input_hindi.py
+#
+#                 To know more about usage, execute:
+#                 $ python parser.py -h
+# ===============================================
+
+
+ #pattern = ^[\t ]*(\w*)[ ]*(?:(?:(\w*)[ ]*\((.*)\))|(.*)):$
+''' 
+ CASE 1:
+ def calculate_discount(price, discount_percent, hello):
+ The above pattern seperates and identifies
+ def
+ calculate_discount
+ price, discount_percent, hello
+ 
+ CASE 2:
+ if discount_percent < 0 or discount_percent > 100:
+ The above pattern seperates and identifies
+ if
+ discount_percent < 0 or discount_percent > 100
+'''
+
+'''
+FLow:
+During parsing identify the user defined functions and add it to the 
+'''
+ 
+import json
+import regex
+import argparse
+import os
+import sys
+import io
+import tokenize
+
+
+from indic_transliteration import sanscript
+from indic_transliteration.sanscript import transliterate
+
+class MultilingualToPythonParser:
+    def __init__(self, language_pack_path: str):
+        """
+        Load the language pack JSON file into a keyword map.
+        Compiles word-based regex patterns for accurate replacement.
+        """
+        if not os.path.isfile(language_pack_path):
+            raise FileNotFoundError(f"Language pack not found: {language_pack_path}")
+        
+        with open(language_pack_path, 'r', encoding='utf-8') as f:
+            try:
+                self.keyword_map = json.load(f)
+            except json.JSONDecodeError:
+                raise ValueError(f"Invalid JSON in language pack: {language_pack_path}")
+            
+        self.pattern = r'[\t ]*([\p{Script=Devanagari}\u094D]+)[ ]*(?:(?:[\p{Script=Devanagari}\u094D]+[ ]*\(.*\))|.*):'
+        # self.patterns = {
+        #     re.compile(rf"(?<!\w){re.escape(k)}(?!\w)"): v
+        #     for k, v in self.keyword_map.items()
+        # }
+
+    def translate_line(self, line: str) -> str:
+        """
+        Translates a single line by replacing language-specific keywords 
+        with their corresponding Python equivalents.
+        """
+        match = regex.search(self.pattern, line)
+        print(match)
+        if match:
+            original_word = match.group(1)
+            if original_word in self.keyword_map:
+                # Replace only the first occurrence of the word
+                replacement = self.keyword_map[original_word]
+                # Use \b word boundary to avoid partial matches
+                line = regex.sub(rf'\b{original_word}\b', replacement, line, count=1)
+
+
+        words = regex.findall(r"[\p{Script=Devanagari}\u094D]+", line)
+        #words = regex.findall(r"[^\s\p{P}\p{S}]+", line)
+        transliterated_word_pairs = {word : transliterate(word, sanscript.DEVANAGARI, sanscript.ITRANS) for word in words}
+
+        translated = line
+        for word, replacement in transliterated_word_pairs.items():
+            # print(word)
+            # handles symbols in a word while translating
+            replacement = regex.sub(r'[\p{S}\p{P}\p{M}]', '', replacement)
+            translated = translated.replace(word, replacement.lower())
+            # print("translated : "+translated)
+
+        return translated
+
+    def translate_code(self, code: str) -> str:
+        """
+        Translates an entire code block line-by-line from the source 
+        language to Python syntax.
+        """
+
+        # found_names = set()
+        # matches = regex.finditer(pattern, code, regex.MULTILINE) 
+        # for match in matches:
+        #     name = match.group(1)
+        #     if name:  # Only add non-empty names
+        #         found_names.add(name)
+        # found_values = {}
+        # for name in found_names:
+        #     if name in self.keyword_map:
+        #         found_values[name] = self.keyword_map[name]
+        
+        lines = code.strip().split("\n")
+        return "\n".join(self.translate_line(line) for line in lines)
+    
+    def translate_entire_code(self, code: str) -> str:
+
+        # Use io.BytesIO to simulate a file-like object for the tokenizer
+        # The tokenize module expects bytes, so encode the string
+        source_text = io.StringIO(code)
+        token_list = []
+
+        # Iterate over the tokens generated by tokenize.generate_tokens
+        for token_info in tokenize.generate_tokens(source_text.readline):
+            token_list.append(token_info)
+
+
+        # Create a new list to hold the modified tokens (or modify in place)
+        modified_tokens = []
+
+        for token in token_list:
+            new_string = token.string
+            
+            # 1. Rename the function 'calculate' to 'compute'
+            if token.type == tokenize.NAME:
+                new_string = transliterate(new_string, sanscript.DEVANAGARI, sanscript.ITRANS)
+
+                
+            # Recreate the token tuple using the original type and the (potentially) new string
+            # untokenize requires (type, string) as the first two elements.
+            modified_tokens.append((token.type, new_string))
+
+        reconstructed_code_string  = tokenize.untokenize(modified_tokens)
+        return 
+
+def main():
+    """
+    Main function that parses the args and runs the compiler
+    """
+    parser = argparse.ArgumentParser(description="Translate multilingual code to Python.")
+    parser.add_argument('-l', '--lang', type=str, required=True, help='Language to translate from (e.g., hindi)')
+    parser.add_argument('-i', '--input', type=str, required=True, help='Path to the input code file')
+
+    args = parser.parse_args()
+    lang = args.lang.lower()
+    input_path = args.input
+
+    if not os.path.isfile(input_path):
+        print(f"❌ Error: Input file not found: {input_path}")
+        sys.exit(1)
+
+    lang_pack_path = f"/home/sriram/Documents/Convex/convex/backend/language_packs/{lang}.json"
+
+    try:
+        translator = MultilingualToPythonParser(lang_pack_path)
+    except (FileNotFoundError, ValueError) as e:
+        print(f"❌ Error: {e}")
+        sys.exit(1)
+
+    with open(input_path, 'r', encoding='utf-8') as file:
+        source_code = file.read()
+
+    translated_code = translator.translate_entire_code(source_code)
+
+    print("✅ Translated Python Code:\n")
+    print(translated_code)
+
+if __name__ == "__main__":
+    main()
