@@ -119,8 +119,3 @@ docs/_build/
 
 # Language packs (if you generate any compiled cache)
 **/*.cache.json
-
-# ========================
-# ipynb checkpoints
-# ========================
-convex/backend/.ipynb_checkpoints
