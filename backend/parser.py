@@ -35,11 +35,6 @@
  if
  discount_percent < 0 or discount_percent > 100
 '''
-
-'''
-FLow:
-During parsing identify the user defined functions and add it to the 
-'''
  
 import json
 import regex

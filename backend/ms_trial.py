@@ -14,7 +14,6 @@ def जोड़(संख्या१, संख्या२):
 print(f"जोड़ का परिणाम: {परिणाम}")
 """
 
-
 # Use io.BytesIO to simulate a file-like object for the tokenizer
 # The tokenize module expects bytes, so encode the string
 source_text = io.StringIO(python_code)
