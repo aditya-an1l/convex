@@ -42,6 +42,15 @@ class Abs_Translator(ABC):
     def ask_user(token_to_verify: str) -> str:
         return 
 
+    @abstractmethod
+    def untokenize_tokens(token_list: list)-> str:
+        return 
+    
+    @abstractmethod
+    def get_answer_from_user(token: str) -> str:
+        response = 'hlo'
+        return response
+
 
 class Translator(Abs_Translator):
     def __init__(self, code, lang):
@@ -53,22 +62,39 @@ class Translator(Abs_Translator):
     '''
     def translate_code(self, code: str, lang: str) -> str:
         tokens = self.tokenize_code(code)
+        '''
+        Handle tokens.lang bcoz its directly asking tokens [list] 
+        '''
+        token_list = tokens.copy()
         if(self.is_eng(tokens.lang)):
-            print('hlo')
+            if(self.is_code_corpus(tokens)):
+                return code
+            else:
+                for i,token in enumerate(tokens):
+                    # Handle the logic for unidentified english keywords
+                    if(token.type != 'KeyWord'):
+                        pred = self.guess_token(token)
+                        response = self.ask_user(pred, predicted=True)
+                        token_list.replace(i, response)
+
         else:
             lang_pack = self.get_dict(lang)
-            token_list = tokens.copy()
             for i,token in enumerate(tokens):
                 if(token.type == 'NAME'):
-                    token = self.map_name_token(token)
-                    token_list.replace(i,token)
-            modified_code = self.untokenize_tokens(token_list)
-        return modified_code
+                    response = self.map_name_token(token, lang_pack)
+                    token_list.replace(i,response)
+
+        latest_code = self.untokenize_tokens(token_list)
+        return latest_code
     
+
     def get_dict(lang: str)-> dict:
         lang_pack = "hlo"
         return lang_pack
-
+    
+    def untokenize_tokens(token_list: list)-> str:
+        code = 'hlo'
+        return code
 
     def tokenize_code(code: str) -> list:
         tokens= ['hlo']
@@ -77,7 +103,7 @@ class Translator(Abs_Translator):
     def is_eng(code: str) -> bool:
         return 
     
-    def map_name_token(token: str)-> str:
+    def map_name_token(token: str, lang_pack)-> str:
         changed_token = 'hlo'
         return changed_token 
     
@@ -98,10 +124,28 @@ class Translator(Abs_Translator):
 
     def is_code_corpus(code: str) -> bool:
         return True
-
-    def ask_user(token_to_verify: str) -> str:
-        return 
     
+    def get_answer_from_user(token: str) -> str:
+        response = 'hlo'
+        return response
+    
+
+    '''
+    Handle predicted case
+    '''
+
+    def ask_user(self, token_to_verify: str, prediction: bool = False) -> str:
+        if(prediction):
+            user_reply = True
+            if(user_reply):
+                return token_to_verify
+            else:
+                response = self.ask_user(token_to_verify)
+                return response
+        else:
+            self.throw_error()
+            user_response = self.get_answer_from_user(token_to_verify) 
+        return user_response
 
     class ChangedToken:
             def __init__(self, token: str):
