@@ -36,11 +36,28 @@ class Abs_Translator(ABC):
     @abstractmethod
     def throw_error():
         return
+    
+    @abstractmethod
+    def is_code_corpus(code: str) -> bool:
+        return True
+    
+    @abstractmethod
+    def ask_user(token_to_verify: str) -> str:
+        return 
 
 
 class Translator(Abs_Translator):
-    def __init__(self):
+    def __init__(self, code, lang):
         self
+        self.translate_code(code)
+    
+    def translate_code(self, code: str, lang: str) -> str:
+        return code
+    
+    def get_dict(lang: str)-> dict:
+        lang_pack = "hlo"
+        return lang_pack
+
 
     def tokenize_code(code: str) -> list:
         tokens= ['hlo']
