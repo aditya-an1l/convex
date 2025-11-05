@@ -9,9 +9,6 @@ class Abs_Translator(ABC):
     def is_eng(code: str) -> bool:
         return 
     
-    @abstractmethod
-    def lang(user_lang: str):
-        return
     
     @abstractmethod 
     def map_name_token(token: str)-> str:
@@ -51,7 +48,21 @@ class Translator(Abs_Translator):
         self
         self.translate_code(code)
     
+'''
+Handle the event when map_name_token() function cant find the right map in language pack
+'''
     def translate_code(self, code: str, lang: str) -> str:
+        tokens = self.tokenize_code(code)
+        if(self.is_eng(tokens.lang)):
+            print('hlo')
+        else:
+            lang_pack = self.get_dict(lang)
+            token_list = tokens.copy()
+            for i,token in enumerate(tokens):
+                if(token.type == 'NAME'):
+                    token = self.map_name_token(token)
+                    token_list.replace(i,token)
+            modified_code = self.untokenize_tokens(token_list)
         return code
     
     def get_dict(lang: str)-> dict:
@@ -65,9 +76,6 @@ class Translator(Abs_Translator):
 
     def is_eng(code: str) -> bool:
         return 
-
-    def lang(user_lang: str):
-        return
     
     def map_name_token(token: str)-> str:
         changed_token = 'hlo'
