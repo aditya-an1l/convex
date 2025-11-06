@@ -129,14 +129,6 @@ class Translator(Abs_Translator):
     def is_code_corpus(code: str) -> bool:
         return True
     
-    def get_answer_from_user(token: str) -> str:
-        print('Please verify the token')
-        print(f'Is it \'\'{token}\'\'')
-        reply = int(input('If yes select 1 else 0'))
-        if(reply):
-            return token
-        else:
-            return str(input('Please enter the right token'))
 
     '''
     Handle predicted case
