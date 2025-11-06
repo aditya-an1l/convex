@@ -99,7 +99,9 @@ class Translator(Abs_Translator):
     def tokenize_code(code: str) -> list:
         tokens= ['hlo']
         return tokens
-
+    '''
+    Current approach: Just take the input, and check if it has [a-zA-Z] if yes return is english (BUT IT FAILS IF LANGUAGE IS RELATED TO LATIN, LIKE SPANISH, FRENCH.....)
+    '''
     def is_eng(code: str) -> bool:
         return 
     
@@ -121,14 +123,20 @@ class Translator(Abs_Translator):
 
     def throw_error():
         return
-
+    '''
+    Current Approach: Make a set of all python keywords => Make set of all words in input => If difference of set gives output, Highlight the output and return
+    '''
     def is_code_corpus(code: str) -> bool:
         return True
     
     def get_answer_from_user(token: str) -> str:
-        response = 'hlo'
-        return response
-    
+        print('Please verify the token')
+        print(f'Is it \'\'{token}\'\'')
+        reply = int(input('If yes select 1 else 0'))
+        if(reply):
+            return token
+        else:
+            return str(input('Please enter the right token'))
 
     '''
     Handle predicted case
@@ -136,16 +144,18 @@ class Translator(Abs_Translator):
 
     def ask_user(self, token_to_verify: str, prediction: bool = False) -> str:
         if(prediction):
-            user_reply = True
-            if(user_reply):
+            print('Please verify the token')
+            print(f'Is it \'\'{token_to_verify}\'\'')
+            reply = int(input('If yes select 1 else 0'))
+            if(reply):
                 return token_to_verify
             else:
                 response = self.ask_user(token_to_verify)
                 return response
         else:
             self.throw_error()
-            user_response = self.get_answer_from_user(token_to_verify) 
-        return user_response
+            response = str(input('Please enter the right token')) 
+        return response
 
     class ChangedToken:
             def __init__(self, token: str):
