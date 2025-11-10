@@ -1,9 +1,10 @@
 from abc import ABC, abstractmethod
+import json
 class Abs_Translator(ABC):
-    @abstractmethod
-    def tokenize(code: str) -> list:
-        tokens= 'hlo'
-        return tokens
+    # @abstractmethod
+    # def tokenize(code: str) -> list:
+    #     tokens= 'hlo'
+    #     return tokens
 
     @abstractmethod
     def is_eng(code: str) -> bool:
@@ -15,10 +16,10 @@ class Abs_Translator(ABC):
         changed_token = 'hlo'
         return changed_token 
     
-    @abstractmethod 
-    def guess_original_token(user_token: str)-> str:
-        predict = 'hlo'
-        return predict
+    # @abstractmethod 
+    # def guess_original_token(user_token: str)-> str:
+    #     predict = 'hlo'
+    #     return predict
     
     @abstractmethod 
     def replace_with_crct_token(token: str)-> str:
@@ -46,29 +47,31 @@ class Abs_Translator(ABC):
     def untokenize_tokens(token_list: list)-> str:
         return 
     
-    @abstractmethod
-    def get_answer_from_user(token: str) -> str:
-        response = 'hlo'
-        return response
+    # @abstractmethod
+    # def get_answer_from_user(token: str) -> str:
+    #     response = 'hlo'
+    #     return response
 
 
 class Translator(Abs_Translator):
-    def __init__(self, code, lang):
-        self
-        self.translate_code(code)
+    def __init__(self, lang: str, code: str):
+        self.lang = lang
+        self.code = code
+        # self.translate_code(code, lang)
+        return
     
     '''
     Handle the event when map_name_token() function cant find the right map in language pack
     '''
-    def translate_code(self, code: str, lang: str) -> str:
-        tokens = self.tokenize_code(code)
+    def translate_code(self) -> str:
+        tokens = self.tokenize_code(self.code)
         '''
         Handle tokens.lang bcoz its directly asking tokens [list] 
         '''
         token_list = tokens.copy()
         if(self.is_eng(tokens.lang)):
             if(self.is_code_corpus(tokens)):
-                return code
+                return self.code
             else:
                 for i,token in enumerate(tokens):
                     # Handle the logic for unidentified english keywords
@@ -78,7 +81,7 @@ class Translator(Abs_Translator):
                         token_list.replace(i, response)
 
         else:
-            lang_pack = self.get_dict(lang)
+            lang_pack = self.get_dict()
             for i,token in enumerate(tokens):
                 if(token.type == 'NAME'):
                     response = self.map_name_token(token, lang_pack)
@@ -88,9 +91,27 @@ class Translator(Abs_Translator):
         return latest_code
     
 
-    def get_dict(lang: str)-> dict:
-        lang_pack = "hlo"
-        return lang_pack
+    def get_dict(self)-> dict:
+        pack_path = ""
+
+        if(self.lang == 'Hindi'):
+            print('hlo')
+            pack_path ="backend/language_packs/hindi.json"
+            
+        try:
+            with open(pack_path, 'r') as lang_file:
+                data = json.load(lang_file)
+                print(f"Successfully read JSON data: {type(data)}")
+                return data
+            
+        except FileNotFoundError:
+            print(f"The file {pack_path} is not found")
+            print(f"Sorry, {self.lang} lang_pack is currently not available")
+        except json.JSONDecodeError:
+
+            print("Error: The file content is not valid JSON.")
+
+        return {}
     
     def untokenize_tokens(token_list: list)-> str:
         code = 'hlo'
@@ -127,6 +148,7 @@ class Translator(Abs_Translator):
     Current Approach: Make a set of all python keywords => Make set of all words in input => If difference of set gives output, Highlight the output and return
     '''
     def is_code_corpus(code: str) -> bool:
+        code 
         return True
     
 
@@ -156,3 +178,20 @@ class Translator(Abs_Translator):
                  self.type
                  self.startpoint
                  self.endpoint
+
+
+python_code = """
+def `नमस्ते_दुनिया():
+    print("नमस्ते दुनिया!")
+
+def `जोड़(`संख्या१, `संख्या२):
+    return संख्या१ + संख्या२
+
+नमस्ते_दुनिया()
+परिणाम = जोड़(५, ३)
+print(f"जोड़ का परिणाम: {परिणाम}")
+"""
+
+
+trans = Translator('Hindi', python_code)
+trans.get_dict()
