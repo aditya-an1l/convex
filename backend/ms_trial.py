@@ -41,42 +41,31 @@ print(f"जोड़ का परिणाम: {परिणाम}")
 python_code2 = '''
 आयात random
 
-# परिभाषा एक फंक्शन (Define a function)
 परिभाषा `संख्या_जांच (`संख्या):
-    # अगर (if) संख्या 10 से बड़ी है
     अगर `संख्या > 10:
-        # वापस (return) सच
         वापस सच
-    # वरना (else)
     वरना:
-        # वापस (return) झूठ
         वापस झूठ
 
-# एक यादृच्छिक संख्या 1 से 20 के बीच उत्पन्न करें
 `यादृच्छिक_संख्या = random.randint (1 , 20)
-
-# छापो (print) यादृच्छिक संख्या
 छापो (f"यादृच्छिक संख्या है: { `यादृच्छिक_संख्या }")
 
-# जाँचें (Check) कि संख्या 10 से बड़ी है या नहीं
 अगर `संख्या_जांच (`यादृच्छिक_संख्या) है सच:
     छापो ("परिणाम: संख्या 10 से बड़ी है।")
 वरना:
     छापो ("परिणाम: संख्या 10 या उससे छोटी है।")
 
-# एक लूप चलाकर गिनती करें (Run a loop and count)
 `गिनती = 1
-जबतक `गिनती <= 5: # जबतक (while) गिनती 5 या उससे कम है
+जबतक `गिनती <= 5:
     छापो (f"गिनती चल रही है: { `गिनती }")
     `गिनती = `गिनती + 1
 
-# कोशिश (try) और छोड़कर (except) ब्लॉक का उपयोग करें
 कोशिश:
     `परिणाम = 10 / 0
 छोड़कर ZeroDivisionError:
-    छापो ("त्रुटि: आप शून्य से भाग नहीं दे सकते।")
-अंततः: # अंततः (finally)
-    छापो ("जाँच पूरी हुई।")
+    छापो (" ")
+अंततः:
+    छापो (" ")
 '''
 
 
@@ -107,12 +96,12 @@ def modify_tokens_efficiently(source_code: str, lang_pack: dict) -> str:
             if next_name:
                 transliterate_string = token_string
                 pattern = r"\b\w+\b"
-    
                 match_result = re.search(pattern, transliterate_string)
                 if(bool(match_result)):
                     new_string = transliterate(transliterate_string, sanscript.DEVANAGARI, sanscript.ITRANS).lower()
                     print(f"-> Efficiently replaced '{token_string}' with '{new_string}'")
                 else:
+                    print(token_string)
                     new_string = token_string
 
                 next_name = False
@@ -120,7 +109,9 @@ def modify_tokens_efficiently(source_code: str, lang_pack: dict) -> str:
                 # translate the keyword
                 if token_string in lang_pack:
                     new_string = lang_pack[token_string]
-
+                else:
+                    new_string = token_string
+                
         else:
             new_string = token_string
 
